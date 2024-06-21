@@ -33,14 +33,12 @@ public class DadosPagamentoService {
     }
 
     //UPDATE - não é necessario pois a partir do momento que o cartão é validado, não
-    //faz sentido o atualiza-lo, apenas deletar e criar um novo.
-
+    //faz sentido o atualiza-lo, apenas deletar e/ou criar um novo.
 
     //DELETE
     public void deletarDadosPagamento(Long id) {
-    dadosPagamentoRepository.deleteById(id);
+        dadosPagamentoRepository.deleteById(id);
     }
-
 
     /**
      * Converts a DadosPagamento object to a DadosPagamentoDTO object.
