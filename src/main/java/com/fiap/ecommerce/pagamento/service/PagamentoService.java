@@ -51,14 +51,14 @@ public class PagamentoService {
         Optional<Pagamento> OptionalPagamento = pagamentoRepository.findById(id);
 
         if(OptionalPagamento.isPresent()){
-            pagamento.setStatusPagamento(OptionalPagamento.get().getStatusPagamento());    
+            pagamento.setStatusPagamento(pagamento.validarPagamento());    
         }
 
         return pagamentoRepository.save(pagamento);
     }
 
     //DELETE
-    //nenhum pagamento há necessidade de exclusão de pagamento
+    //nao há necessidade de exclusão dos pagamentos
 
     /**
      * Converts a Pagamento object to a PagamentoDTO object.

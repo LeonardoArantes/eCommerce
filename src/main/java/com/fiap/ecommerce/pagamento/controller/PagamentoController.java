@@ -28,7 +28,7 @@ public class PagamentoController {
     private PagamentoService pagamentoService;
 
     //criarPagamento
-    @PostMapping
+    @PostMapping("/criarPagamento")
     public ResponseEntity<PagamentoDTO> criarPagamento(@RequestBody PagamentoDTO pagamentoDTO) throws Exception{
         PagamentoDTO pagamentoCriado = pagamentoService.criarPagamento(pagamentoDTO);
 
@@ -50,7 +50,7 @@ public class PagamentoController {
     }    
 
     //atualizarPagamento
-    @PutMapping("/{id}")
+    @PutMapping("/atualizarPagamento/{id}")
     public ResponseEntity<Pagamento> atualizarPagamento(@RequestBody Pagamento pagamento){
         Pagamento pagamentoAtualizado = pagamentoService.atualizarPagamento(
                                                 pagamento.getIdPagamento(), pagamento);

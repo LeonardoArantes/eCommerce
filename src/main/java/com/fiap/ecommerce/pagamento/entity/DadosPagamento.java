@@ -15,7 +15,7 @@ import lombok.Data;
 public class DadosPagamento {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cartaoId;
 
     private String nome;
