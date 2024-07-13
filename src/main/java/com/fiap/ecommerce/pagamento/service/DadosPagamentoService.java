@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fiap.ecommerce.pagamento.DTO.DadosPagamentoDTO;
-import com.fiap.ecommerce.pagamento.entity.DadosPagamento;
+import com.fiap.ecommerce.pagamento.entity.DadosCartao;
 import com.fiap.ecommerce.pagamento.repository.DadosPagamentoRepository;
 
 @Service
@@ -16,15 +16,16 @@ public class DadosPagamentoService {
     private DadosPagamentoRepository dadosPagamentoRepository;
 
     public DadosPagamentoDTO criarDadosPagamento(DadosPagamentoDTO dadosPagamentoDTO) throws Exception{
-        DadosPagamento dadosPagamento = convertToEntity(dadosPagamentoDTO);
+        DadosCartao dadosPagamento = convertToEntity(dadosPagamentoDTO);
         if(dadosPagamento == null)
             throw new Exception("Dados do Cartão inválidos");  
     
         return convertToDTO(dadosPagamentoRepository.save(dadosPagamento));
     }
 
-    public Optional<DadosPagamento> lerDadosPagamentoPorId(Long id) {
-        Optional<DadosPagamento> OptionalDadosPagamento = dadosPagamentoRepository.findById(id);
+    public Optional<DadosCartao> lerDadosPagamentoPorId(Long id) {
+        Optional<DadosCartao> OptionalDadosPagamento = dadosPagamentoRepository
+                                                                    .findById(id);
         
         if(!OptionalDadosPagamento.isPresent())
             return Optional.empty();    
@@ -46,7 +47,7 @@ public class DadosPagamentoService {
      * @param  dadosPagamento  the DadosPagamento object to convert
      * @return                the converted DadosPagamentoDTO object
      */
-    private DadosPagamentoDTO convertToDTO(DadosPagamento dadosPagamento) {
+    private DadosPagamentoDTO convertToDTO(DadosCartao dadosPagamento) {
         return new DadosPagamentoDTO(dadosPagamento.getCartaoId(),
                                      dadosPagamento.getNome(),
                                      dadosPagamento.getSobrenome(),
@@ -62,8 +63,8 @@ public class DadosPagamentoService {
      * @param  dadosPagamentoDTO  the DadosPagamentoDTO object to convert
      * @return                   the converted DadosPagamento object
      */
-    private DadosPagamento convertToEntity(DadosPagamentoDTO dadosPagamentoDTO) {
-        return new DadosPagamento(dadosPagamentoDTO.cartaoId(),
+    private DadosCartao convertToEntity(DadosPagamentoDTO dadosPagamentoDTO) {
+        return new DadosCartao(dadosPagamentoDTO.cartaoId(),
                                   dadosPagamentoDTO.nome(),
                                   dadosPagamentoDTO.sobrenome(),
                                   dadosPagamentoDTO.numeroCartao(),

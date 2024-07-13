@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,36 +30,23 @@ import lombok.NoArgsConstructor;
 public class Pagamento {
     
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idPagamento;
 
+    @Enumerated(EnumType.STRING)
     private StatusPagamento statusPagamento;
 
     private LocalDate dataPagamento;
 
     //private List<item> itens;
 
+    @Enumerated(EnumType.STRING)
     private tipoPagamento tipoPagamento;
 
     private BigDecimal valorTotal;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "dados_pagamento_id", nullable = false)
-    private DadosPagamento dadosPagamento;    
-    
+    @JoinColumn(name = "dados_pagamento_id", referencedColumnName = "cartaoId")
+    private DadosCartao dadosPagamento;    
 
-    //metodo simula o pagamento
-    public StatusPagamento validarPagamento() {
-        Random random = new Random();
-
-        int min = 1;  // valor mínimo do intervalo
-        int max = 100;  // valor máximo do intervalo
-
-        int randomNum = random.nextInt(max - min) + min;
-
-        if (randomNum % 2 != 0)
-            return this.statusPagamento = StatusPagamento.RECUSADO;
-        
-        return this.statusPagamento = StatusPagamento.APROVADO;
-    }
 }

@@ -1,8 +1,9 @@
 package com.fiap.ecommerce.pagamento.DTO;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import com.fiap.ecommerce.pagamento.entity.DadosPagamento;
+import com.fiap.ecommerce.pagamento.entity.DadosCartao;
 import com.fiap.ecommerce.pagamento.entity.StatusPagamento;
 import com.fiap.ecommerce.pagamento.entity.tipoPagamento;
 
@@ -12,7 +13,8 @@ public record PagamentoDTO(
     LocalDate dataPagamento,
     //private List<item> itens;
     tipoPagamento tipoPagamento,
-    DadosPagamento dadosPagamento
+    BigDecimal valorTotal,
+    DadosCartao dadosPagamento
 ) {
 
 }
