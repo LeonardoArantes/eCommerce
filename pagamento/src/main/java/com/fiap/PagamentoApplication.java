@@ -1,13 +1,13 @@
-package com.fiap.ecommerce;
+package com.fiap;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EcommerceApplication {
+public class PagamentoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EcommerceApplication.class, args);
+		SpringApplication.run(PagamentoApplication.class, args);
 	}
 
 }
