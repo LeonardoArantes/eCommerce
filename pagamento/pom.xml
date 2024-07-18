@@ -13,8 +13,15 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>microsserviço-pagamento</name>
 	<description>microsserviço de pagamento</description>
+	<packaging>jar</packaging>
 	<properties>
 		<java.version>17</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
+		<junit.jupiter.version>5.8.2</junit.jupiter.version>
+		<junit.platform.version>1.8.2</junit.platform.version>
+		<aspectj.version>1.9.19</aspectj.version>
 	</properties>
 	<dependencies>
 		<dependency>
