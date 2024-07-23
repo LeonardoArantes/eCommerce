@@ -10,7 +10,7 @@ import com.fiap.model.User;
 import com.fiap.repository.UserRepository;
 
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 public class UserService {
     private final UserRepository userRepository;
 
-    @Autowired
+//    @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }

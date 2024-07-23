@@ -1,0 +1,74 @@
+version: '3.8'
+services:
+
+  entrega:
+    image: entrega:latest
+    container_name: entrega
+    ports:
+      - "8081:8081"
+#    environment:
+#      - EUREKA_SERVER=http://eureka-server:8761/eureka/
+    networks:
+      - microservices-network
+    depends_on:
+      - eureka-server
+
+  pagamento:
+    image: pagamento:latest
+    container_name: pagamento
+    ports:
+      - "8084:8084"
+#    environment:
+#      - EUREKA_SERVER=http://eureka-server:8761/eureka
+    networks:
+      - microservices-network
+    depends_on:
+      - eureka-server
+
+  pedido:
+    image: pedido:latest
+    container_name: pedido
+    ports:
+      - "8082:8082"
+#    environment:
+#      - EUREKA_SERVER=http://eureka-server:8761/eureka
+    networks:
+      - microservices-network
+    depends_on:
+      - eureka-server
+
+  produto:
+    image: produto:latest
+    container_name: produto
+    ports:
+      - "8083:8083"
+#    environment:
+#      - EUREKA_SERVER=http://eureka-server:8761/eureka
+    networks:
+      - microservices-network
+    depends_on:
+      - eureka-server
+
+  usuario:
+    image: usuario:latest
+    container_name: usuario
+    ports:
+      - "8085:8085"
+#    environment:
+#      - EUREKA_SERVER=http://eureka-server:8761/eureka
+    networks:
+      - microservices-network
+    depends_on:
+      - eureka-server
+
+  eureka-server:
+    image: eureka-server:latest
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+      - microservices-network
+
+networks:
+  microservices-network:
+    driver: bridge
