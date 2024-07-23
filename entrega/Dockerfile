@@ -5,10 +5,12 @@ WORKDIR /app
 
 COPY . /app/
 
+RUN mvn clean install
+
 RUN mvn package
 
 # Use a imagem oficial do OpenJDK para executar nosso aplicativo Java
-FROM openjdk:11-jdk-slim
+FROM openjdk:17-jdk-slim
 
 COPY --from=build /app/target/*.jar app.jar
 

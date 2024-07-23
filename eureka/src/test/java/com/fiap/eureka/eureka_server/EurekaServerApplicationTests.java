@@ -1,10 +1,10 @@
-package com.fiap;
+package com.fiap.eureka.eureka_server;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PagamentoApplicationTests {
+class EurekaServerApplicationTests {
 
 	@Test
 	void contextLoads() {
