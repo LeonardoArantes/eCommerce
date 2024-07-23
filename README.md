@@ -6,12 +6,14 @@ TechChallenge V FIAP - Sistema de eCommerce usando Spring Security
                 Leonardo Arantes Di Nizo;           
                 Alexandre Marques;
 
-API utilizando Java, Spring Boot, Hibernate, Docker, Lombok, H2, JPA, Maven, Mockito, Swagger.
+API utilizando Java, Spring Boot, Spring Security, WebFlux Hibernate, Docker, Lombok, H2, JPA, Maven, Mockito, Swagger.
 
 ## Tecnologias:
 * [Java](https://dev.java)
 * [MVC](https://)
 * [Spring Batch](https://spring.io/projects/spring-batch)
+* [Spring Security](https://spring.io/projects/spring-security)
+* [Web Flux](https://spring.io/projects/spring-webfux)
 * [Spring Cloud Stream](https://spring.io/projects/spring-cloud-stream)
 * [Spring Boot](https://spring.io/projects/spring-boot)
 * [Hibernate](https://hibernate.org/)

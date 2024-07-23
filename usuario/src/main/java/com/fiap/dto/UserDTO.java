@@ -14,6 +14,9 @@ public record UserDTO(
         @NotBlank(message = "O nome deve ser informado")
         String name,
 
+        @NotBlank(message = "O login deve ser informado")
+        String login,
+
         @Email(message = "E-mail inválido")
         String email,
 
