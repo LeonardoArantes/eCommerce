@@ -1,9 +1,11 @@
 package com.fiap.service;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.fiap.controller.exception.ControllerNotFoundException;
-import com.fiap.controller.request.UserLoginRequest;
 import com.fiap.controller.request.UserPasswordRequest;
 import com.fiap.dto.UserDTO;
 import com.fiap.model.User;
@@ -17,7 +19,7 @@ import org.springframework.data.domain.Pageable;
 import java.time.LocalDateTime;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
 
     @Autowired
@@ -29,6 +31,11 @@ public class UserService {
         Page<User> users = userRepository.findAll(pageable);
 
         return users.map(this::toDTO);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return (UserDetails) userRepository.findByEmail(username);
     }
 
     public UserDTO findById(Long id) {
@@ -43,22 +50,9 @@ public class UserService {
         return toDTO(user);
     }
 
-    public UserLoginRequest login(String email, String password) {
-        try {
-            User user = userRepository.findByEmail(email);
-            if (user != null && user.getPassword().equals(password)) {
-                return new UserLoginRequest(user.getId(), user.getName(), user.getEmail());
-            } else {
-                throw new ControllerNotFoundException("Usuário não encontrado");
-            }
-        } catch (EntityNotFoundException e) {
-            throw new ControllerNotFoundException("Usuário não encontrado");
-        }
-    }
-
     public UserPasswordRequest changePassword(UserPasswordRequest userPasswordRequest) {
         try {
-            User user = userRepository.findByEmail(userPasswordRequest.email());
+            User user = (User) userRepository.findByEmail(userPasswordRequest.email());
             if (user != null && user.getPassword().equals(userPasswordRequest.password())) {
                 user.setPassword(userPasswordRequest.newPassword());
                 user = userRepository.save(user);
@@ -79,6 +73,9 @@ public class UserService {
 
             if (UserDTO.name() != null)
                  user.setName(UserDTO.name());
+
+            if (UserDTO.login() != null)
+                user.setLogin(UserDTO.login());
 
             if (UserDTO.email() != null)
                 user.setEmail(UserDTO.email());
@@ -113,6 +110,7 @@ public class UserService {
                 user.getId(),
                 user.getType(),
                 user.getName(),
+                user.getLogin(),
                 user.getEmail(),
                 user.getPhone(),
                 user.getPhoto(),
@@ -128,6 +126,7 @@ public class UserService {
                 userDTO.id(),
                 userDTO.type(),
                 userDTO.name(),
+                userDTO.login(),
                 userDTO.email(),
                 userDTO.phone(),
                 userDTO.photo(),
@@ -137,6 +136,7 @@ public class UserService {
                 userDTO.updatedAt()
         );
     }
+
 }
 
 

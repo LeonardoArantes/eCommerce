@@ -16,7 +16,7 @@ public class ClienteService {
     }
 
     public ClienteDTO buscarClientePorId(Long id) {
-        String url = "http://localhost:8080/clientes/" + id;
+        String url = "http://localhost:8080/usuario/" + id;
         return restTemplate.getForObject(url, ClienteDTO.class);
     }
 }

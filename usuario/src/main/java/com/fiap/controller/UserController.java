@@ -9,10 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.fiap.controller.request.UserLoginRequest;
 import com.fiap.controller.request.UserPasswordRequest;
 import com.fiap.dto.UserDTO;
-import com.fiap.model.User;
 import com.fiap.service.UserService;
 
 @RestController
@@ -61,18 +59,6 @@ public class UserController {
         userService.delete(id);
 
         return ResponseEntity.noContent().build();
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity<UserLoginRequest> login(@Valid @RequestBody UserLoginRequest loginRequest) {
-        User user = new User(loginRequest.id(), loginRequest.email(), loginRequest.password());
-
-        UserLoginRequest userLoginRequest = userService.login(user.getEmail(), user.getPassword());
-        if (userLoginRequest != null) {
-            return ResponseEntity.ok(userLoginRequest);
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
     }
 
     @PutMapping("/{id}/novasenha")
